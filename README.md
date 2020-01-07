@@ -4,6 +4,7 @@ A full wrapper for the [MKM API 2.0](https://api.cardmarket.com/ws/documentation
 
 # Requirements
 * Python 3.4+
+* oauthlib
 * Requests
 * Requests_OAuthlib
 
@@ -12,6 +13,8 @@ A full wrapper for the [MKM API 2.0](https://api.cardmarket.com/ws/documentation
 ```
 pip install mkmapi
 ```
+
+Make sure the requirements are installed (see requirements.txt)
 
 # Usage
 Find your credentials in your MKM account under the apps section.
@@ -36,10 +39,18 @@ Make a request.
 response = mkm.account_management.get_account_information()
 ```
 
+Print the response
+```python
+import json 
+
+json_response = json.loads(response.content)
+print(json.dumps(json_response, indent=2))
+```
+
 # Features
 * Full support with docstrings and autocomplete for modern IDEs.
 * Most methods have a full interface with named parameters.
-* It's possible to send raw queries (method, url, params, **kwargs)
+* It's possible to send raw queries via `mkm.resolve(method, url, params, **kwargs)`.
 
 # Credit
 Thanks to https://github.com/evonove/ for his work on the serialization and OAuth

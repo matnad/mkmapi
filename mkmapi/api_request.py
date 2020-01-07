@@ -45,7 +45,6 @@ class ApiRequest:
 
         complete_url = f'{self.base_endpoint}{url}'
         auth = self.create_auth(complete_url)
-        print(method, complete_url, auth, params, kwargs)
         response = request(method=method, url=complete_url, auth=auth, params=params, **kwargs)
         return self.handle_response(response)
 
