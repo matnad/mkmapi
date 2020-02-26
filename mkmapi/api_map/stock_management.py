@@ -164,8 +164,17 @@ class StockManagement:
         """
         request_method = 'GET'
         resource_url = '/stock/file'
+        params = {}
+        if isinstance(game_id, int) and game_id > 1:
+            params.update({'idGame': game_id})
 
-        return self.resolve(request_method, resource_url)
+        if isinstance(is_sealed, bool) and is_sealed == True:
+            params.update({'isSealed': is_sealed})
+
+        if isinstance(language_id, int) and language_id > 1:
+            params.update({'idLanguage': language_id})
+
+        return self.resolve(request_method, resource_url, params=params)
 
     def get_stock_in_shopping_carts(self):
         """
